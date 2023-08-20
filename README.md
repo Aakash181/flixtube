@@ -15,11 +15,11 @@ List of main features:
 ## Installation
 
 
-## Flowchart
+## Flowchart of Flixtube production
 ![flowchart](flowchart1.gif)
 
-## Flowchart of cluster
-![flixtube]()
+## Flowchart of development and production
+![flixtube](flowchart2.gif)
 ## Contributing
 
 If you want to contribute to this project, follow these guidelines:
