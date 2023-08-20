@@ -16,10 +16,10 @@ List of main features:
 
 
 ## Flowchart of production workstation of flixtube
-![flowchart](flowchart1.gif)
+![flowchart](flowchart1)
 
 ## Flowchart of development and production
-![flixtube](flowchart2.gif)
+![flixtube](flowchart2)
 ## Contributing
 
 If you want to contribute to this project, follow these guidelines:
