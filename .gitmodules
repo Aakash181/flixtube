@@ -1,0 +1,12 @@
+[submodule "frontend-microservice"]
+	path = frontend-microservice
+	url = https://github.com/Aakash181/frontend-microservice.git
+[submodule "video-storage-microservice"]
+	path = video-storage-microservice
+	url = https://github.com/Aakash181/video-storage-microservice.git
+[submodule "video-streaming-mircorservice"]
+	path = video-streaming-mircorservice
+	url = https://github.com/Aakash181/video-streaming-mircorservice.git
+[submodule "history-microservice"]
+	path = history-microservice
+	url = https://github.com/Aakash181/history-microservice.git
