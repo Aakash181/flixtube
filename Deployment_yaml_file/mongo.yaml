@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      imagePullSecrets:
+      - name: my-registry-key
+      containers:
+      - name: mongodb
+        image: YOUR_MONGOMICROSERVICE_ECR_URI #sudo usermod -aG docker $USER && newgrp docker
+        # image: mongo
+        # imagePullPolicy: Always
+        ports:
+        - containerPort: 27017
+        
+        # env:
+        # - name: MONGO_INITDB_ROOT_USERNAME
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: mongodb-secret
+        #       key: mongo-root-username
+        # - name: MONGO_INITDB_ROOT_PASSWORD
+        #   valueFrom: 
+        #     secretKeyRef:
+        #       name: mongodb-secret
+        #       key: mongo-root-password
+        volumeMounts:
+            - name: mongo-data-dir
+              mountPath: /data/db
+
+      volumes:
+        - name: mongo-data-dir
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim      
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

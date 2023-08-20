@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-storage-deployment
+  labels:
+    app: video-storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-storage
+  template:
+    metadata:
+      labels:
+        app: video-storage
+    spec:
+      imagePullSecrets:
+      - name: my-registry-key    
+      containers:
+      - name: video-storage
+        image: 760060707047.dkr.ecr.ap-south-1.amazonaws.com/video-storage:latest
+        env:
+          - name: AWS_ACCESS_KEY_ID
+            value: "your_aws_secret_key"
+          - name: AWS_SECRET_ACCESS_KEY
+            value: "your_aws_secret_access_key"
+          - name: PORT
+            value: "30002"
+        ports:
+        - containerPort: 30002
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: video-storage-service
+spec:
+  selector:
+    app: video-storage
+  ports:
+    - protocol: TCP
+      port: 30002
+      targetPort: 30002

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming-deployment
+  labels:
+    app: video-streaming  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-streaming
+  template:
+    metadata:
+      labels:
+        app: video-streaming
+    spec:
+      imagePullSecrets:
+      - name: my-registry-key   
+      containers:
+      - name: video-streaming
+        image: your_videostreaming_microservice_ecr_uri
+        env:
+          - name: DBHOST
+            value: "mongodb://mongodb-service:27017"
+          - name: DBNAME
+            value: "video-streaming"
+          - name: PORT
+            value: "30001"
+          - name: VIDEO_STORAGE_HOST
+            value: "video-storage-service"
+          - name: VIDEO_STORAGE_PORT
+            value: "30002"
+        ports:
+        - containerPort: 30001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: video-streaming-service
+spec:
+  selector:
+    app: video-streaming
+  # type: LoadBalancer  
+  ports:
+    - protocol: TCP
+      port: 30001
+      targetPort: 30001
+      # nodePort: 30009
