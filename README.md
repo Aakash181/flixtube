@@ -15,7 +15,7 @@ List of main features:
 ## Installation
 
 
-## Flowchart of Flixtube production
+## Flowchart of production workstation of flixtube
 ![flowchart](flowchart1.gif)
 
 ## Flowchart of development and production
