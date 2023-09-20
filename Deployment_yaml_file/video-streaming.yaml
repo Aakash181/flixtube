@@ -32,6 +32,13 @@ spec:
             value: "30002"
         ports:
         - containerPort: 30001
+        resources:
+          requests:
+            cpu: "100m"    # Request 100 milliCPU (0.1 CPU)
+            memory: "256Mi"  # Request 256 Mebibytes of memory
+          limits:
+            cpu: "500m"    # Limit to 500 milliCPU (0.5 CPU)
+            memory: "512Mi"  # Limit to 512 Mebibytes of memory
 
 ---
 apiVersion: v1
