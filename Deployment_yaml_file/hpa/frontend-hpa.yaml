@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: video-streaming-hpa
+  name: frontend-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
